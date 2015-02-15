@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Itay Adler -- CTO -- @itayad
+    Ran Klien -- CPO --
+    Danni Friedland -- CEO -- @dannifriedland
+
+# THANKS
+
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, LESS, JADE, GULP, EXPRESS, PARSE, jQuery

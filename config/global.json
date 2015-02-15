@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "sample-site"
+        }, 
+        "sample-site": {
+            "applicationId": "0lmiO5E0clOH6btJoTJ4aqaFuEAbTHYpMDM8CqOO", 
+            "masterKey": "OmflY2r5dy0FjPPaypsWRrAX0S6ZUkm7P3hiaked"
+        }
+    }
+}
