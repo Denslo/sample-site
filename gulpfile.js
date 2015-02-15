@@ -114,6 +114,17 @@ gulp.task('clean',function(){
         .pipe(clean());
 });
 
+gulp.task('start_server',function(){
+    var nodemon = require('gulp-nodemon');
+    nodemon({ script: 'server.js', ext: 'js', ignore: ['public/**','code/js/**'] })
+        .on('change', function(){
+            console.log('changed!')
+        })
+        .on('restart', function () {
+            console.log('restarted!')
+        })
+});
+
 gulp.task('watch', ['compile'], function(){
   gulp.watch('code/css/*.*', ['css']);
   gulp.watch('code/images/*.*', ['images']);
@@ -128,5 +139,5 @@ gulp.task('compile', ['clean'], function() {
 gulp.task('deploy', ['compile']);
 
 gulp.task('default', ['compile', 'watch'], function(){
-
+    gulp.start('start_server');
 });

@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "preinstall": "curl -s https://www.parse.com/downloads/cloud_code/installer.sh | sudo /bin/bash",
     "start": "gulp"
   },
   "devDependencies": {
     "gulp": "3.8.10",
+    "gulp-nodemon": "1.0.5",
     "gulp-concat": "2.4.3",
     "gulp-concat-css": "1.1.1",
     "gulp-imagemin": "2.1.0",
@@ -27,5 +27,8 @@
     "node-notifier": "4.1.0",
     "gulp-clean": "~0.3.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "4.11.2",
+    "jade": "1.9.1"
+  }
 }
