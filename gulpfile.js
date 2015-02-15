@@ -1,7 +1,5 @@
 var gulp = require('gulp');
 
-var env_config = {};
-
 var onError = function(err) {
   var notify = require('gulp-notify');
   var util = require('gulp-util');
@@ -35,7 +33,7 @@ gulp.task('js', function() {
     var concat = require('gulp-concat');
     var plumber = require('gulp-plumber');
 
-  return gulp.src(['code/js/**/*.js',env_config.path])
+  return gulp.src('code/js/*.js')
     .pipe(plumber({errorHandler: onError}))
     .pipe(concat('index.js'))
     .pipe(gulp.dest('./public/js'))
@@ -50,7 +48,7 @@ gulp.task('jade', function() {
   var minify = require('gulp-minify-html');
   var plumber = require('gulp-plumber');
 
-  return gulp.src('code/jade/**/*.*')
+  return gulp.src('code/jade/*.*')
       .pipe(gulp.dest('./cloud/views/'))
       .pipe(plumber({errorHandler: onError}))
       .pipe(jade())
@@ -60,7 +58,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src('code/html/**/*.*')
+  return gulp.src('code/html/*.*')
              .pipe(gulp.dest('./public/'));
 });
 
@@ -70,7 +68,7 @@ gulp.task('images', function(){
   var plumber = require('gulp-plumber');
 
 
-  return gulp.src('code/images/**/*.*')
+  return gulp.src('code/images/*.*')
     .pipe(plumber({errorHandler: onError}))
     .pipe(imagemin({
       progressive: true,
@@ -95,7 +93,7 @@ gulp.task('css', function() {
   var autoprefixer = require('gulp-autoprefixer');
   var plumber = require('gulp-plumber');
 
-  return gulp.src('code/css/basic.less')
+  return gulp.src('code/css/*.less')
     .pipe(plumber({errorHandler: onError}))
     .pipe(less())
     .pipe(concatCss('basic.css'))
@@ -117,10 +115,10 @@ gulp.task('clean',function(){
 });
 
 gulp.task('watch', ['compile'], function(){
-  gulp.watch('code/css/**/*.*', ['css']);
-  gulp.watch('code/images/**/*.*', ['images']);
-  gulp.watch('code/jade/**/*.*', ['jade']);
-  gulp.watch('code/js/**/*.*', ['js']);
+  gulp.watch('code/css/*.*', ['css']);
+  gulp.watch('code/images/*.*', ['images']);
+  gulp.watch('code/jade/*.*', ['jade']);
+  gulp.watch('code/js/*.*', ['js']);
 });
 
 gulp.task('compile', ['clean'], function() {
