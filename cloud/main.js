@@ -1,18 +1,44 @@
 var express = require('express');
 var app = express();
 
-
-app.set('views','./cloud/views');
+app.set('views', 'cloud/views');
 app.set('view engine', 'jade');
+app.use(express.bodyParser());
+
+var data = require('cloud/data.js');
 
 app.get('/', function(req, res){
-    res.render('index', { title: 'Express' });
+    res.send('hi');
 });
 
-var spa = require('./routes/spa');
-var website = require('./routes/website');
+app.get('/website', function(req, res){
 
-app.use('/spa', spa);
-app.use('/website', website);
+    var pageId = randomInt(data.results.length);
+    var reqId = 0;
 
-exports.app = app;
+    if(req.query.id !== undefined)
+        pageId = req.query.id % data.results.length;
+
+    if(req.query.recorder !== undefined)
+        reqId = req.query.recorder;
+
+    var result = data.results[pageId];
+
+    result.title = 'website';
+    result.pageID = pageId;
+    result.reqId = reqId;
+
+    res.render('website', result);
+});
+
+app.get('/spa', function(req, res){
+    res.render('spa', { title: 'spa' });
+});
+
+function randomInt(max)
+{
+    return Math.floor(Math.random()*(max+1));
+}
+
+
+app.listen(3000);

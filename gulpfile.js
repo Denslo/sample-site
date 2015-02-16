@@ -62,20 +62,19 @@ gulp.task('html', function() {
              .pipe(gulp.dest('./public/'));
 });
 
-gulp.task('images', function(){
+gulp.task('image', function(){
   var imagemin = require('gulp-imagemin');
   var pngquant = require('imagemin-pngquant');
   var plumber = require('gulp-plumber');
 
-
-  return gulp.src('code/images/*.*')
-    .pipe(plumber({errorHandler: onError}))
-    .pipe(imagemin({
-      progressive: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest('./public/images'))
+  return gulp.src(['code/image/**/*'])
+    //.pipe(plumber({errorHandler: onError}))
+    //.pipe(imagemin({
+    //  progressive: true,
+    //  svgoPlugins: [{removeViewBox: false}],
+    //  use: [pngquant()]
+    //}))
+    .pipe(gulp.dest('./public/image'))
     .pipe(onSuccess());
 
 });
@@ -116,7 +115,7 @@ gulp.task('clean',function(){
 
 gulp.task('start_server',function(){
     var nodemon = require('gulp-nodemon');
-    nodemon({ script: 'server.js', ext: 'js', ignore: ['public/**','code/js/**'] })
+    nodemon({ script: 'cloud/main.js', ext: 'js', ignore: ['public/**','code/js/**'] })
         .on('change', function(){
             console.log('changed!')
         })
@@ -127,13 +126,13 @@ gulp.task('start_server',function(){
 
 gulp.task('watch', ['compile'], function(){
   gulp.watch('code/css/*.*', ['css']);
-  gulp.watch('code/images/*.*', ['images']);
+  gulp.watch('code/image/*.*', ['image']);
   gulp.watch('code/jade/*.*', ['jade']);
   gulp.watch('code/js/*.*', ['js']);
 });
 
 gulp.task('compile', ['clean'], function() {
-    gulp.start('css', 'images', 'jade', 'js', 'humans', 'html');
+    gulp.start('css', 'image', 'jade', 'js', 'humans', 'html');
 });
 
 gulp.task('deploy', ['compile']);
