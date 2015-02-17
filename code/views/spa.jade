@@ -1,0 +1,27 @@
+extends layout
+
+block head
+    include google
+
+    script(src='//code.jquery.com/jquery-1.11.2.min.js')
+    script(src='//code.jquery.com/jquery-migrate-1.2.1.min.js')
+    script(src='/js/index.min.js')
+
+    if (reqId === 0)
+        include inspectlet
+    if (reqId === 4)
+        include navilytics
+    if (reqId === 5)
+        include luckyorange
+    if (reqId === 7)
+        include hotjar
+
+block content
+    if (reqId === 1)
+        include sessioncam
+    if (reqId === 2)
+        include mouseflow
+    if (reqId === 3)
+        include mousestats
+    if (reqId === 6)
+        include clicky

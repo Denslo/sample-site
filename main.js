@@ -5,11 +5,16 @@ app.set('views', 'cloud/views');
 app.set('view engine', 'jade');
 app.use(express.bodyParser());
 
-var data = require('./code/data/data.js');
+var dataSrc = "cloud/data.js";
 
-app.get('/', function(req, res){
-    res.send('hi');
-});
+if(process.env != undefined) {
+    if (process.env.IS_LOCAL) {
+        dataSrc = "./cloud/data.js";
+        app.use(express.static(__dirname + '/public'));
+    }
+}
+
+var data = require(dataSrc);
 
 app.get('/website', function(req, res){
 
@@ -32,7 +37,15 @@ app.get('/website', function(req, res){
 });
 
 app.get('/spa', function(req, res){
-    res.render('spa', { title: 'spa' });
+    var reqId = -1;
+    if(req.query.recorder !== undefined)
+        reqId = parseInt(req.query.recorder);
+
+    res.render('spa', { title: 'spa',reqId:reqId });
+});
+
+app.get('/data', function(req, res){
+    res.json(data);
 });
 
 function randomInt(max)
