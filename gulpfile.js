@@ -109,13 +109,13 @@ gulp.task('css', function() {
 gulp.task('clean',function(){
     var clean = require('gulp-clean');
 
-    return gulp.src('./public', {read: false,force: true})
+    return gulp.src(['./public','./cloud'], {read: false,force: true})
         .pipe(clean());
 });
 
 gulp.task('start_server',function(){
     var nodemon = require('gulp-nodemon');
-    nodemon({ script: 'cloud/main.js', ext: 'js', ignore: ['public/**','code/js/**'] })
+    nodemon({ script: 'main.js', ext: 'js', ignore: ['public/**','code/js/**'] })
         .on('change', function(){
             console.log('changed!')
         })

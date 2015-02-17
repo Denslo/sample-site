@@ -5,7 +5,7 @@ app.set('views', 'cloud/views');
 app.set('view engine', 'jade');
 app.use(express.bodyParser());
 
-var data = require('cloud/data.js');
+var data = require('./code/data/data.js');
 
 app.get('/', function(req, res){
     res.send('hi');

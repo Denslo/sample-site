@@ -1,0 +1,65 @@
+extends layout
+
+block head
+    include google
+
+    if (reqId === 0)
+        include inspectlet
+    if (reqId === 4)
+        include navilytics
+    if (reqId === 5)
+        include luckyorange
+    if (reqId === 7)
+        include hotjar
+
+block content
+
+    img(src=logo)
+    h1=name
+
+    h2 Company Summery -
+    p=promise
+    p=summery
+    p
+        if area
+            |#{name} was founded on <b>#{founded}</b> and dealing in the fields of <b>#{area}</b>. #{name} focuse mainly on the <b>SMB</b> market.
+        else
+            |#{name} was founded on <b>#{founded}</b> and dealing in the fields of <b>#{area}</b>. #{name} focuse mainly on the <b>Enterprise</b> market.
+    p Compony Site:
+        a(href=site) #{site}
+
+    h2  Features Summery -
+    table
+        each val, key in features
+            tr
+                td=key
+                td=val
+    p comments: #{comments}
+
+    h2  Pricing and Plans -
+    table
+        each val, key in price
+            tr
+                td=key
+                td=val
+
+    p customers: #{customers}
+
+    h2  Funds Summery -
+    each val in funds
+        table
+            each val1, key in val
+                tr
+                    td=key
+                    td=val1
+
+    a(href="/website?id=" + (pageID + 1) + "&recorder=" + reqId) next page
+
+    if (reqId === 1)
+        include sessioncam
+    if (reqId === 2)
+        include mouseflow
+    if (reqId === 3)
+        include mousestats
+    if (reqId === 6)
+        include clicky
