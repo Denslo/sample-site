@@ -49,7 +49,6 @@ gulp.task('jade', function() {
   var plumber = require('gulp-plumber');
 
   return gulp.src('code/jade/*.*')
-      .pipe(gulp.dest('./cloud/views/'))
       .pipe(plumber({errorHandler: onError}))
       .pipe(jade())
       .pipe(minify())
@@ -57,25 +56,32 @@ gulp.task('jade', function() {
       .pipe(onSuccess());
 });
 
-gulp.task('html', function() {
-  return gulp.src('code/html/*.*')
-             .pipe(gulp.dest('./public/'));
+gulp.task('views', function() {
+  return gulp.src('code/views/*.*')
+             .pipe(gulp.dest('./cloud/views/'));
 });
 
 gulp.task('image', function(){
-  var imagemin = require('gulp-imagemin');
-  var pngquant = require('imagemin-pngquant');
-  var plumber = require('gulp-plumber');
 
   return gulp.src(['code/image/**/*'])
-    //.pipe(plumber({errorHandler: onError}))
-    //.pipe(imagemin({
-    //  progressive: true,
-    //  svgoPlugins: [{removeViewBox: false}],
-    //  use: [pngquant()]
-    //}))
     .pipe(gulp.dest('./public/image'))
     .pipe(onSuccess());
+
+});
+
+gulp.task('data', function(){
+
+    return gulp.src(['code/data/**/*'])
+        .pipe(gulp.dest('./cloud/'))
+        .pipe(onSuccess());
+
+});
+
+gulp.task('copy_server', function(){
+
+    return gulp.src(['main.js'])
+        .pipe(gulp.dest('./cloud/'))
+        .pipe(onSuccess());
 
 });
 
@@ -129,10 +135,12 @@ gulp.task('watch', ['compile'], function(){
   gulp.watch('code/image/*.*', ['image']);
   gulp.watch('code/jade/*.*', ['jade']);
   gulp.watch('code/js/*.*', ['js']);
+  gulp.watch('code/main.js', ['copy_server']);
+  gulp.watch('code/views/*.*', ['views']);
 });
 
 gulp.task('compile', ['clean'], function() {
-    gulp.start('css', 'image', 'jade', 'js', 'humans', 'html');
+    gulp.start('css', 'image', 'jade', 'js', 'humans', 'views','copy_server','data');
 });
 
 gulp.task('deploy', ['compile']);
