@@ -14,13 +14,13 @@ app.get('/', function(req, res){
 app.get('/website', function(req, res){
 
     var pageId = randomInt(data.results.length);
-    var reqId = 0;
+    var reqId = -1;
 
     if(req.query.id !== undefined)
         pageId = req.query.id % data.results.length;
 
     if(req.query.recorder !== undefined)
-        reqId = req.query.recorder;
+        reqId = parseInt(req.query.recorder);
 
     var result = data.results[pageId];
 
