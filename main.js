@@ -44,6 +44,14 @@ app.get('/spa', function(req, res){
     res.render('spa', { title: 'spa',reqId:reqId });
 });
 
+app.get('/backand', function(req, res){
+    var reqId = -1;
+    if(req.query.recorder !== undefined)
+        reqId = parseInt(req.query.recorder);
+
+    res.render('backand', { title: 'spa',reqId:reqId });
+});
+
 app.get('/data', function(req, res){
     res.json(data);
 });

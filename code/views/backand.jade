@@ -1,0 +1,21 @@
+extends backand-layout
+
+block head
+    include google
+    if (reqId === 0)
+        include inspectlet
+    if (reqId === 4)
+        include navilytics
+    if (reqId === 5)
+        include luckyorange
+    if (reqId === 7)
+        include hotjar
+block content
+    if (reqId === 1)
+        include sessioncam
+    if (reqId === 2)
+        include mouseflow
+    if (reqId === 3)
+        include mousestats
+    if (reqId === 6)
+        include clicky

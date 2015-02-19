@@ -1,0 +1,198 @@
+'use strict';
+/**
+* @ngdoc overview
+* @name directive.bkndFilter
+*/
+angular.module('backAnd.directives')
+    .directive('bkndFilter', ['$sce',
+        function ($sce) {
+    /**
+    * @ngdoc directive
+    * @name directive.bkndFilter
+    * @description grid filter
+    * @filterOptions {object} filter, filter options array 
+    * @returns {object} directive
+    */
+    return {
+        restrict: 'A',
+        replace: true,
+        scope: {
+            filterOptions: "=",
+            showOperators: "="
+        },
+        templateUrl: 'backand/js/directives/grids/partials/filter.html',
+        link: function (scope) {
+
+            scope.$watch('filterOptions', function () {
+                if (scope.filterOptions) {
+                 
+                    scope.filterOptionsOutput = _.map(angular.copy(scope.filterOptions), function(o) {
+                        if (o.fieldType == "relation") {
+                            if (o.value){
+                                o.relation = _.map(o.value.split(","), function(s) {
+                                    return { value: s };
+                                });
+
+                            }
+                            else{
+                                o.relation = [];
+                            }
+                            
+                        } 
+                        return o;
+                    });
+
+                    // if there are default values then emit the filter in the first time
+                    if (scope.getFilter().length > 0)
+                        scope.$emit('onfilter', scope.getFilter(), scope);
+                }
+            }, true);
+
+            scope.multiSelectEvents = {
+                onItemSelect: function(item) {
+                    scope.filterChanged();
+                },
+                onItemDeselect: function(item) {
+                    scope.filterChanged();
+                },
+                // onSelectAll: function() {},
+                // onUnselectAll: function() {}
+            };
+
+            scope.multiSelectExtraSettings = {
+                showCheckAll: false,
+                showUncheckAll: false,
+                idProp: "value",
+                displayProp: "name",
+                externalIdProp: "value",
+                buttonClasses: "btn btn-lg multi-filter multiselect-button"
+            }
+            
+            scope.filterChanged = function () {
+                scope.$emit('onfilter', scope.getFilter(), scope);
+            }
+
+            scope.getFilter = function () {
+                var filter = [];
+                angular.forEach(scope.filterOptionsOutput, function (option) {
+                    if (option.fieldType != "relation") {
+                        if (option.value || option.operator == 'empty' || option.operator == 'notEmpty') {
+                           filter.push({ "fieldName": option.fieldName, "operator": option.operator, "value": option.value }); 
+                        } 
+                    }
+                    else  {
+                        if (option.relation || option.operator == 'empty' || option.operator == 'notEmpty') {
+                           filter.push({ "fieldName": option.fieldName, "operator": option.operator, "value": _.pluck(option.relation, "value").join(",") }); 
+                        };                      
+                    }
+                });
+                return filter;
+            }
+
+            scope.reset = function () {
+                scope.filterOptionsOutput = angular.copy(scope.filterOptions);
+                scope.$emit('onfilter', scope.getFilter(), scope);
+            }
+
+            function htmlDecode(input) {
+                var e = document.createElement('div');
+                e.innerHTML = input;
+                return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+            }
+
+            scope.getOperatorSymbol = function (operator) {
+                var symbol = null;
+                switch (operator) {
+                    case 'equals':
+                        symbol = '=';
+                        break;
+                    case 'notEquals':
+                        symbol =$sce.trustAsHtml(htmlDecode('&ne;'));
+                        break;
+                    case 'greaterThan':
+                        symbol = $sce.trustAsHtml(htmlDecode('&gt;'));
+                        break;
+                    case 'greaterThanOrEqualsTo':
+                        symbol = $sce.trustAsHtml(htmlDecode('&ge;'));
+                        break;
+                    case 'lessThan':
+                        symbol = $sce.trustAsHtml(htmlDecode('&lt;'));
+                        break;
+                    case 'lessThanOrEqualsTo':
+                        symbol = $sce.trustAsHtml(htmlDecode('&le;'));
+                        break;
+                    case 'empty':
+                        symbol = $sce.trustAsHtml(htmlDecode('&empty;'));
+                        break;
+                    case 'notEmpty':
+                        symbol = $sce.trustAsHtml(htmlDecode('&exist;'));
+                        break;
+                    case 'startsWith':
+                        symbol = $sce.trustAsHtml(htmlDecode('&rarr;'));
+                        break;
+                    case 'endsWith':
+                        symbol = $sce.trustAsHtml(htmlDecode('&larr;'));
+                        break;
+                    case 'contains':
+                        symbol = $sce.trustAsHtml(htmlDecode('&harr;'));
+                        break;
+                    case 'notContains':
+                        symbol = 'glyphicon glyphicon-align-justify';
+                        break;
+
+                    default:
+                        break;
+                }
+
+                return symbol;
+            }
+         
+            scope.getOperatorIcon = function (operator) {
+                var icon = null;
+                switch (operator) {
+                    case 'equals':
+                        icon = 'glyphicon glyphicon-pause';
+                        break;
+                    case 'notEquals':
+                        icon = 'glyphicon glyphicon-stop';
+                        break;
+                    case 'greaterThan':
+                        icon = 'glyphicon glyphicon-chevron-right';
+                        break;
+                    case 'greaterThanOrEqualsTo':
+                        icon = 'glyphicon glyphicon-step-forward';
+                        break;
+                    case 'lessThan':
+                        icon = 'glyphicon glyphicon-chevron-left';
+                        break;
+                    case 'lessThanOrEqualsTo':
+                        icon = 'glyphicon glyphicon-step-backward';
+                        break;
+                    case 'empty':
+                        icon = 'glyphicon glyphicon-remove-circle';
+                        break;
+                    case 'notEmpty':
+                        icon = 'glyphicon glyphicon-ok-circle';
+                        break;
+                    case 'startsWith':
+                        icon = 'glyphicon glyphicon-align-left';
+                        break;
+                    case 'endsWith':
+                        icon = 'glyphicon glyphicon-align-right';
+                        break;
+                    case 'contains':
+                        icon = 'glyphicon glyphicon-align-center';
+                        break;
+                    case 'notContains':
+                        icon = 'glyphicon glyphicon-align-justify';
+                        break;
+
+                    default:
+                        break;
+                }
+
+                return icon;
+            }
+        }
+    }
+}]);

@@ -1,0 +1,31 @@
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="signInController" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-center">Login</h1>
+            </div>
+            <div class="modal-body">
+                <form class="form center-block" ng-submit="authentication()">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control input-lg" ng-model="user" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control input-lg" ng-model="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" ng-model="appName" placeholder="Application" required>
+                    </div>
+                    <div class="">
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In" ng-show="!waiting">
+                        <img class="img-responsive center-block" ng-show="waiting" src="backand/img/ajax-loader.gif" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group has-error text-left">
+                    <span class="help-block">{{loginError}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

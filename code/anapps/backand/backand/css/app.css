@@ -1,0 +1,129 @@
+.ngFooterPanel{
+
+    color: #666;
+}
+
+
+#backand-banner .navbar-header{
+    height:30px;
+}
+
+#backand-banner .dropdown-menu{
+    z-index: 9999;
+}
+
+.yellow {
+	color: yellow;
+}
+
+.orange {
+	color: orange;
+}
+
+.green {
+	color: #87c540;
+}
+
+@media screen and (max-width: 767px) {
+    
+    #backand-banner{
+        display:none;
+    }
+    
+
+}
+
+/*editor directive*/
+.ta-editor {
+    min-height: 300px;
+    /*height: auto;*/
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:20px 0;
+}
+
+/*date directive*/
+.datepicker-wrapper {
+	height: auto; 
+	width: auto;
+}
+
+.grid-filter .panel{
+    background-color:rgb(244,244,244);
+    max-height: 180px;
+    overflow: auto;
+}
+
+.grid-filter .dropdown-toggle{
+    background-color:rgb(204,204,204);
+}
+
+.grid-filter .btn-group{
+    margin-left: -3px;
+    margin-top: -3px;
+
+}
+
+.grid-filter .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-color: rgb(204,204,204);
+    width:40px;
+}
+
+.grid-filter .btn.btn-primary:hover {
+    border-color: rgb(204,204,204);
+}
+
+.grid-filter .dropdown-menu li{
+    cursor:pointer;
+}
+
+.grid-filter .dropdown-menu li:hover{
+    background-color:lightblue;
+}
+
+.grid-filter .dropdown-menu li.selected{
+    background-color:lightblue;
+}
+
+.grid-filter .btn.btn-primary.selected{
+    background-color:#367fa9;
+}
+
+.grid-filter ul.dropdown-menu{
+    min-width: 200px;
+}
+
+.grid-filter ul.dropdown-menu li{
+    margin-bottom: 4px;
+}
+
+.grid-filter .filter-operator-symbol{
+    width: 16px;
+    float: left;
+    margin-left: 4px;
+}
+
+.multi-select-close {
+    color: #808080;
+}
+
+.multiselect-parent {
+    width: 100%;
+}
+
+.multiselect-button {
+    height: 34px;
+    margin-right: 0px;
+    padding-bottom: 9px;
+}
+
+.multiselect-parent  .btn {
+    background-color: white;
+}
+
+.multi-filter {
+    min-width: 100%;
+}

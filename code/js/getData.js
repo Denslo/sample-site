@@ -87,7 +87,10 @@ function initNextButtons(){
         var curPageID = this.parentNode.id;
         var nextPageID = "page_" + ((parseInt(this.parentNode.id.split('_')[1])+1)%totalPages);
 
-        $('#' + curPageID).toggleClass('hide');
-        $('#' + nextPageID).toggleClass('hide');
+        //$('#' + curPageID).toggleClass('hide');
+        //$('#' + nextPageID).toggleClass('hide');
+
+        document.getElementById(curPageID).className += " hide";
+        document.getElementById(nextPageID).className ="page";
     });
 }

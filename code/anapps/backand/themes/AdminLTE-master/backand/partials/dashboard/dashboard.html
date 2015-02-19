@@ -1,0 +1,17 @@
+<section class="content-header">
+    <h1>
+        {{global.currentName}}
+    </h1>
+    <ol class="breadcrumb">
+        <li data-ng-repeat="breadcrumb in breadcrumbs"><a href="#" ng-style="{'cursor':'default'}"><i class="fa custom-icon" icon-type="breadcrumb.partType"></i>{{breadcrumb.name}}</a></li>
+    </ol>
+</section>
+<section class="content">
+    <bknd-dashboard colors-options="{line:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    bar:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    donut:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    column:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    spline:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    area:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed'],
+                    bubble:['#0b62a4','#7CB47C','#4da74d','#afd8f8','#edc240','#cb4b4b','#9440ed']}"></bknd-dashboard>
+</section>
