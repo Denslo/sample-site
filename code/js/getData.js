@@ -18,7 +18,7 @@ function initPage(){
             first = "<div id='page_"+index+"' class='page hide'>" ;
         }
         items.push(first);
-        items.push("<img src="+ jsonData.logo +">");
+        items.push("<img src="+ jsonData.logo +" height='100' width='400'>");
         items.push("<h1>"+ jsonData.name +"</h1>");
         items.push("<h2>Company Summery -</h2>");
         items.push("<p>"+ jsonData.promise +"</p>");
