@@ -1487,40 +1487,103 @@ module.exports = {
           "date": "Oct 20, 2014"
         }
       ]
-    },{
-      "name": "str",
-      "logo": "image/logo/",
-      "site": "str",
-      "founded": "str",
-      "area": ["Analytics"],
-      "isMarketSMB": false,
-      "promise": "str",
-      "summery": "str",
-      "features": {
-        "isRecording": false,
-        "isFunnels": false,
-        "isHeatMap": false,
-        "isZeroInt": false,
-        "isPreDefEvent": false,
-        "isWeb": false,
-        "isMob": false,
-        "isSaaS": false
-      },
-      "comments": ["str"],
-      "price": {
-        "isFree": false,
-        "isEntOption": false,
-        "minPrice": 0,
-        "maxPrice": 0
-      },
-      "customers": 0,
-      "funds": [
-        {
-          "id": 0,
+    }, {
+          "name": "crazy egg",
+          "logo": "image/logo/crazy-egg.svg",
+          "site": "http://www.crazyegg.com/",
+          "founded": "2006",
+          "area": ["User Testing"],
+          "isMarketSMB": true,
+          "promise": "Crazy Egg is like a pair of x-ray glasses that lets you see exactly what people are doing on your website.",
+          "summery": "Crazy Egg is a user testing tool that gives you heatmaps, clickmaps and scrollmaps of your visitors interacting with your site. It helps you learn where your users are having trouble.",
+          "features": {
+              "isRecording": false,
+              "isFunnels": false,
+              "isHeatMap": true,
+              "isZeroInt": true,
+              "isPreDefEvent": false,
+              "isWeb": true,
+              "isMob": false,
+              "isSaaS": true
+          },
+          "comments": ["only heatmap"],
+          "price": {
+              "isFree": false,
+              "isEntOption": false,
+              "minPrice": 9,
+              "maxPrice": 99
+          },
+          "customers": 0,
+          "funds": []
+      }, {
+          "name": "fullstory",
+          "logo": "image/logo/fullstory.svg",
+          "site": "https://www.fullstory.com/",
+          "founded": "str",
+          "area": ["User Testing"],
+          "isMarketSMB": false,
+          "promise": "FullStory lets product and support teams easily understand everything about the customer experience.",
+          "summery": "FullStory lets product and support teams easily understand everything about the customer experience. With a simple script, FullStory captures every user event (yes, all of them). This radical approach unlocks session playback, real-time search, and a natural way to explore your data.",
+          "features": {
+              "isRecording": true,
+              "isFunnels": false,
+              "isHeatMap": false,
+              "isZeroInt": true,
+              "isPreDefEvent": false,
+              "isWeb": true,
+              "isMob": false,
+              "isSaaS": true
+          },
+          "comments": ["good product","selling every sit for $20","pricing by sessions per month"],
+          "price": {
+              "isFree": false,
+              "isEntOption": true,
+              "minPrice": 149,
+              "maxPrice": 749
+          },
+          "customers": 0,
+          "funds": [
+              {
+                  "id": 0,
+                  "name": "str",
+                  "amount": 0,
+                  "currency": "USD",
+                  "date": "str"
+              }]
+      },{
           "name": "str",
-          "amount": 0,
-          "currency": "USD",
-          "date": "str"
-        }]
+          "logo": "image/logo/",
+          "site": "str",
+          "founded": "str",
+          "area": ["User Testing"],
+          "isMarketSMB": false,
+          "promise": "str",
+          "summery": "str",
+          "features": {
+              "isRecording": false,
+              "isFunnels": false,
+              "isHeatMap": false,
+              "isZeroInt": false,
+              "isPreDefEvent": false,
+              "isWeb": false,
+              "isMob": false,
+              "isSaaS": false
+          },
+          "comments": ["str"],
+          "price": {
+              "isFree": false,
+              "isEntOption": false,
+              "minPrice": 0,
+              "maxPrice": 0
+          },
+          "customers": 0,
+          "funds": [
+              {
+                  "id": 0,
+                  "name": "str",
+                  "amount": 0,
+                  "currency": "USD",
+                  "date": "str"
+              }]
     }]
 };
