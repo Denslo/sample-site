@@ -76,7 +76,19 @@ function initPage(){
     });
     $( "body" ).append(items.join(""));
 
-    initNextButtons()
+    initNextButtons();
+
+    var name = function() {
+        var name = ["Jaco","Macaw","Toucan"];
+        var last = ["red","gray","white"];
+        return name[Math.floor((Math.random() * 10))%3] + " " + last[Math.floor((Math.random() * 10))%3];
+    }();
+
+    var email = function(name) {return name.replace(" ",".") + "@getjaco.com"}(name);
+
+    heap.identify({name: name,
+        plan: 'Enterprise',
+        email: email});
 }
 
 function initNextButtons(){
@@ -92,5 +104,6 @@ function initNextButtons(){
 
         document.getElementById(curPageID).className += " hide";
         document.getElementById(nextPageID).className ="page";
+
     });
 }

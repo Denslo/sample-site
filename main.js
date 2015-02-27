@@ -58,7 +58,8 @@ app.get('/data', function(req, res){
 
 function randomInt(max)
 {
-    return Math.floor(Math.random()*(max+1));
+    return 0;
+    //return Math.floor(Math.random()*(max+1));
 }
 
 
